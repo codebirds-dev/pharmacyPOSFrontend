@@ -23,7 +23,7 @@ const DashboardLayout = ({ children }) => {
           <Spin spinning={spinning} fullscreen />
         </>
       ) : (
-        <main class="nk-body ui-rounder npc-default has-sidebar">
+        <main className="nk-body ui-rounder npc-default has-sidebar">
           {children}
         </main>
       )}

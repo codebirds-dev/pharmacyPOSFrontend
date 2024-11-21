@@ -4,8 +4,8 @@ import "@/assets/css/theme.css?ver=3.2.0";
 import { ConfigProvider } from "antd";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-import { Themeing } from "./theme";
 import { persistedStore, store } from "@/redux/store";
+import { Themeing } from "../theme";
 
 export default function App({ Component, pageProps }) {
   return (

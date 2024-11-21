@@ -41,7 +41,7 @@ const LoginSlider = () => {
   ];
   return (
     <div
-      class="nk-split-content nk-split-stretch bg-lighter d-flex toggle-break-lg toggle-slide toggle-slide-right"
+      className="nk-split-content nk-split-stretch bg-lighter d-flex toggle-break-lg toggle-slide toggle-slide-right"
       data-toggle-body="true"
       data-content="athPromo"
       data-toggle-screen="lg"
