@@ -3,6 +3,7 @@ import LoginSlider from "@/components/Common/LoginSlider";
 import { setUser } from "@/redux/features/authSlice";
 import requestHandler from "@/services/requestHandler";
 import { Form, Input } from "antd";
+import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -29,7 +30,8 @@ const Index = () => {
         username,
         password,
       });
-      dispatch(setUser(result?.data));
+      console.log("🚀 ~ onFinish ~ result:", result);
+      dispatch(setUser(result?.user));
       router.push("/dashboard");
     } catch (error) {
       console.error("Login error: ", error);
@@ -38,6 +40,9 @@ const Index = () => {
   };
   return (
     <>
+      <Head>
+        <title>Login | Pharmacy POS</title>
+      </Head>
       <div className="nk-app-root">
         <div className="nk-main ">
           <div className="nk-wrap nk-wrap-nosidebar">
@@ -84,7 +89,7 @@ const Index = () => {
                     <Form
                       action=""
                       className="form-validate is-alter"
-                      autocomplete="off"
+                      autoComplete="off"
                       onFinish={onFinish}
                       size="large"
                       form={form}
@@ -162,7 +167,7 @@ const Index = () => {
                           >
                             <Input.Password
                               className="form-control form-control-lg"
-                              style={{ borderRadius: "5px" }}
+                              style={{ borderRadius: "5px", display: "flex" }}
                               placeholder="Enter your passcode"
                             />
                           </Form.Item>

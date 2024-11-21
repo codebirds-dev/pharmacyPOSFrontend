@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import DashboardLayout from "@/components/Layouts/DashboardLayout";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -16,6 +18,10 @@ const geistMono = localFont({
 });
 
 export default function Home() {
+  const router = useRouter();
+  useEffect(() => {
+    router.push("/dashboard");
+  }, [router]);
   return (
     <>
       <div className="nk-app-root">

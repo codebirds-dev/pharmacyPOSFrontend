@@ -9,12 +9,14 @@ const requestHandler = async (method, route, payload, headers, params) => {
     headers,
     params,
   });
+  console.log("🚀 ~ requestHandler ~ res:", res);
   const decodedData =
-    typeof res?.data?.data === "string"
-      ? jwtDecode(res?.data?.data)
+    typeof res?.data?.body === "string"
+      ? jwtDecode(res?.data?.body)
       : res?.data?.data;
+  console.log("🚀 ~ requestHandler ~ decodedData:", decodedData);
 
-  return decodedData;
+  return decodedData?.list ?? decodedData;
 };
 
 export default requestHandler;
