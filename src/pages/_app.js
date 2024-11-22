@@ -5,7 +5,7 @@ import { ConfigProvider } from "antd";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistedStore, store } from "@/redux/store";
-import { Themeing } from "../theme";
+import { Themeing } from "@/theme";
 
 export default function App({ Component, pageProps }) {
   return (
