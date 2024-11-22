@@ -11,15 +11,15 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Index = () => {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth);
+  const auth = useSelector((state) => state.auth);
   const router = useRouter();
   const [form] = Form.useForm();
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
-    if (user) {
+    if (auth?.user) {
       router.push("/dashboard");
     }
-  }, [user]);
+  }, [auth?.user]);
 
   const onFinish = async (values) => {
     let { username, password } = values;
@@ -31,7 +31,7 @@ const Index = () => {
         password,
       });
       console.log("🚀 ~ onFinish ~ result:", result);
-      dispatch(setUser(result?.user));
+      dispatch(setUser(result));
       router.push("/dashboard");
     } catch (error) {
       console.error("Login error: ", error);

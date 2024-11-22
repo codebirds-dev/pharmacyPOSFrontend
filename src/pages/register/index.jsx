@@ -21,7 +21,7 @@ import { useDispatch, useSelector } from "react-redux";
 const Index = () => {
   const dispatch = useDispatch();
   const [api, contextHolder] = notification.useNotification();
-  const user = useSelector((state) => state.auth);
+  const auth = useSelector((state) => state.auth);
   const router = useRouter();
   const [form] = Form.useForm();
   const [isLoading, setIsLoading] = useState(false);

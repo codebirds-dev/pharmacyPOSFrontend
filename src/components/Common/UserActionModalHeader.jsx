@@ -1,14 +1,27 @@
+import { setLogout } from "@/redux/features/authSlice";
+import { setUserPreference } from "@/redux/features/userPreferenceSlice";
+import { getNameInitials } from "@/services/generateNameInitials";
+import { roleConstants } from "@/utils/constants";
+import { UserOutlined } from "@ant-design/icons";
+import { Avatar } from "antd";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const UserActionModalHeader = () => {
+  const user = useSelector((state) => state.auth.user);
+  const userPreference = useSelector((state) => state?.userPreference);
   const modalRef = useRef(null);
   const modalButtonRef = useRef(null);
   const dispatch = useDispatch();
   const router = useRouter();
   const [toggleUserActionModal, setToggleUserActionModal] = useState(false);
+  const [initial, setInitial] = useState(null);
+  useEffect(() => {
+    console.log("user: ", user);
+    setInitial(getNameInitials(`${user?.firstName} ${user?.lastName}`));
+  }, [user]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -36,9 +49,15 @@ const UserActionModalHeader = () => {
     router.push("/login");
   };
 
-  useEffect(() => {
-    console.log("🚀 ~ useEffect ~ modalButtonRef:", modalButtonRef);
-  }, [modalButtonRef]);
+  const darkModeHandler = () => {
+    let userPref = {
+      ...userPreference,
+      isDarkMode: !userPreference?.isDarkMode,
+    };
+    console.log("🚀 ~ darkModeHandler ~ userPref:", userPref);
+
+    dispatch(setUserPreference(userPref));
+  };
 
   return (
     <>
@@ -57,9 +76,15 @@ const UserActionModalHeader = () => {
           ref={modalButtonRef}
         >
           <div className="user-toggle">
-            <div className="user-avatar sm">
+            {/* <div className="user-avatar sm">
               <em className="icon ni ni-user-alt"></em>
-            </div>
+            </div> */}
+            <Avatar
+              style={{
+                backgroundColor: "#87d068",
+              }}
+              icon={<UserOutlined />}
+            />
           </div>
         </Link>
         <div
@@ -71,11 +96,14 @@ const UserActionModalHeader = () => {
           <div className="dropdown-inner user-card-wrap bg-lighter">
             <div className="user-card">
               <div className="user-avatar">
-                <span>AB</span>
+                <span>{initial}</span>
               </div>
               <div className="user-info">
-                <span className="lead-text">Abu Bin Ishtiyak</span>
-                <span className="sub-text">info@softnio.com</span>
+                <span className="lead-text">{`${user?.firstName} ${user?.lastName}`}</span>
+                <span className="sub-text">{user?.email}</span>
+                <p style={{ fontWeight: "bold" }}>
+                  {roleConstants[user?.role]}
+                </p>
               </div>
             </div>
           </div>
@@ -100,10 +128,10 @@ const UserActionModalHeader = () => {
                 </a>
               </li>
               <li>
-                <a className="dark-switch" href="#">
+                <Link className="dark-switch" href="" onClick={darkModeHandler}>
                   <em className="icon ni ni-moon"></em>
                   <span>Dark Mode</span>
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

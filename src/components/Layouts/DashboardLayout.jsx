@@ -7,7 +7,9 @@ import Header from "@/components/Common/Header";
 
 const DashboardLayout = ({ children }) => {
   const router = useRouter();
-  const user = useSelector((state) => state?.auth);
+  const user = useSelector((state) => state?.auth?.user);
+  const userPreference = useSelector((state) => state?.userPreferences);
+  console.log("🚀 ~ DashboardLayout ~ userPreference:", userPreference);
   const [spinning, setSpinning] = useState(true);
 
   useEffect(() => {
@@ -25,7 +27,11 @@ const DashboardLayout = ({ children }) => {
           <Spin spinning={spinning} fullscreen />
         </>
       ) : (
-        <main className="nk-body ui-rounder npc-default has-sidebar">
+        <main
+          className={`nk-body ui-rounder npc-default has-sidebar${
+            userPreference?.isDarkMode ? " dark-mode" : ""
+          }`}
+        >
           <div className="nk-app-root">
             <Sidebar />
             <div className="nk-main">

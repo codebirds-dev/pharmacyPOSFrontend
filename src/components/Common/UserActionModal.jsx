@@ -1,16 +1,26 @@
 import { setLogout } from "@/redux/features/authSlice";
+import { getNameInitials } from "@/services/generateNameInitials";
+import { roleConstants } from "@/utils/constants";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const UserActionModal = () => {
+  const auth = useSelector((state) => state.auth);
   const modalRef = useRef(null);
   const modalButtonRef = useRef(null);
   const dispatch = useDispatch();
   const router = useRouter();
   const [activeActionModal, setActiveActionModal] = useState(false);
+  const [initial, setInitial] = useState(null);
 
+  useEffect(() => {
+    console.log("auth?.user: ", auth?.user);
+    setInitial(
+      getNameInitials(`${auth?.user?.firstName} ${auth?.user?.lastName}`)
+    );
+  }, [auth?.user]);
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -50,7 +60,7 @@ const UserActionModal = () => {
           ref={modalButtonRef}
         >
           <div className="user-avatar">
-            <span>AB</span>
+            <span>{initial}</span>
           </div>
         </Link>
         <div
@@ -63,11 +73,14 @@ const UserActionModal = () => {
           <div className="dropdown-inner user-card-wrap d-none d-md-block">
             <div className="user-card">
               <div className="user-avatar">
-                <span>AB</span>
+                <span>{initial}</span>
               </div>
               <div className="user-info">
-                <span className="lead-text">Abu Bin Ishtiyak</span>
-                <span className="sub-text text-soft">info@softnio.com</span>
+                <span className="lead-text">{`${auth?.user?.firstName} ${auth?.user?.lastName}`}</span>
+                <span className="sub-text text-soft">{auth?.user?.email}</span>
+                <p style={{ fontWeight: "bold" }}>
+                  {roleConstants[auth?.user?.role]}
+                </p>
               </div>
             </div>
           </div>
