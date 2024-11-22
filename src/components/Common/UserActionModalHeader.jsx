@@ -3,7 +3,7 @@ import { setUserPreference } from "@/redux/features/userPreferenceSlice";
 import { getNameInitials } from "@/services/generateNameInitials";
 import { roleConstants } from "@/utils/constants";
 import { UserOutlined } from "@ant-design/icons";
-import { Avatar } from "antd";
+import { Avatar, Switch } from "antd";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef, useState } from "react";
@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const UserActionModalHeader = () => {
   const user = useSelector((state) => state.auth.user);
-  const userPreference = useSelector((state) => state?.userPreference);
+  const userPreference = useSelector((state) => state?.userPreferences);
   const modalRef = useRef(null);
   const modalButtonRef = useRef(null);
   const dispatch = useDispatch();
@@ -81,7 +81,7 @@ const UserActionModalHeader = () => {
             </div> */}
             <Avatar
               style={{
-                backgroundColor: "#87d068",
+                backgroundColor: "#3fbd9a",
               }}
               icon={<UserOutlined />}
             />
@@ -128,9 +128,28 @@ const UserActionModalHeader = () => {
                 </a>
               </li>
               <li>
-                <Link className="dark-switch" href="" onClick={darkModeHandler}>
-                  <em className="icon ni ni-moon"></em>
-                  <span>Dark Mode</span>
+                <Link href="" onClick={darkModeHandler}>
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <em className="icon ni ni-moon"></em>
+                      <span>Dark Mode</span>
+                    </div>
+                    <Switch
+                      checked={userPreference?.isDarkMode}
+                      style={{
+                        backgroundColor: userPreference?.isDarkMode
+                          ? "#0fac81"
+                          : undefined,
+                      }}
+                    />
+                  </div>
                 </Link>
               </li>
             </ul>

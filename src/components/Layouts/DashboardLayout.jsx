@@ -9,7 +9,6 @@ const DashboardLayout = ({ children }) => {
   const router = useRouter();
   const user = useSelector((state) => state?.auth?.user);
   const userPreference = useSelector((state) => state?.userPreferences);
-  console.log("🚀 ~ DashboardLayout ~ userPreference:", userPreference);
   const [spinning, setSpinning] = useState(true);
 
   useEffect(() => {

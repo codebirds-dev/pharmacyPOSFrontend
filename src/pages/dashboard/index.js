@@ -1,10 +1,13 @@
-import Image from "next/image";
-import localFont from "next/font/local";
+import DataCard from "@/components/Common/Chart/DataCard";
+import {
+  DefaultCustomerChart,
+  DefaultOrderChart,
+  DefaultRevenueChart,
+  DefaultVisitorChart,
+} from "@/components/Common/Chart/DefaultCharts";
 import DashboardLayout from "@/components/Layouts/DashboardLayout";
-import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Header from "@/components/Common/Header";
-import Sidebar from "@/components/Common/Sidebar";
+import "slick-carousel/slick/slick.css";
 
 export default function Home() {
   return (
@@ -91,28 +94,31 @@ export default function Home() {
                       <div className="card">
                         <div className="nk-ecwg nk-ecwg6">
                           <div className="card-inner">
-                            <div className="card-title-group">
-                              <div className="card-title">
-                                <h6 className="title">Today's Sales</h6>
-                              </div>
-                            </div>
-                            <div className="data">
-                              <div className="data-group">
-                                <div className="amount">$10,945</div>
-                                <div className="nk-ecwg6-ck">
-                                  <canvas
-                                    className="ecommerce-line-chart-s3"
-                                    id="ipdIncome"
-                                  ></canvas>
+                            <div
+                              style={{ display: "flex", alignItems: "center" }}
+                            >
+                              <div>
+                                <div className="card-title-group">
+                                  <div className="card-title">
+                                    <h6 className="title">Today's Sales</h6>
+                                  </div>
+                                </div>
+
+                                <div className="data">
+                                  <div className="data-group">
+                                    <div className="amount">$10,945</div>
+                                    <div className="nk-ecwg6-ck"></div>
+                                  </div>
+                                  <div className="info">
+                                    <span className="change up text-danger">
+                                      <em className="icon ni ni-arrow-long-up"></em>
+                                      4.63%
+                                    </span>
+                                    <span> vs. last week</span>
+                                  </div>
                                 </div>
                               </div>
-                              <div className="info">
-                                <span className="change up text-danger">
-                                  <em className="icon ni ni-arrow-long-up"></em>
-                                  4.63%
-                                </span>
-                                <span> vs. last week</span>
-                              </div>
+                              <DefaultOrderChart />
                             </div>
                           </div>
                         </div>
@@ -122,28 +128,30 @@ export default function Home() {
                       <div className="card">
                         <div className="nk-ecwg nk-ecwg6">
                           <div className="card-inner">
-                            <div className="card-title-group">
-                              <div className="card-title">
-                                <h6 className="title">Today's Revenue</h6>
-                              </div>
-                            </div>
-                            <div className="data">
-                              <div className="data-group">
-                                <div className="amount">$12,338</div>
-                                <div className="nk-ecwg6-ck">
-                                  <canvas
-                                    className="ecommerce-line-chart-s3"
-                                    id="opdIncome"
-                                  ></canvas>
+                            <div
+                              style={{ display: "flex", alignItems: "center" }}
+                            >
+                              <div>
+                                <div className="card-title-group">
+                                  <div className="card-title">
+                                    <h6 className="title">Today's Revenue</h6>
+                                  </div>
+                                </div>
+                                <div className="data">
+                                  <div className="data-group">
+                                    <div className="amount">$12,338</div>
+                                    <div className="nk-ecwg6-ck"></div>
+                                  </div>
+                                  <div className="info">
+                                    <span className="change down text-danger">
+                                      <em className="icon ni ni-arrow-long-down"></em>
+                                      2.34%
+                                    </span>
+                                    <span> vs. last week</span>
+                                  </div>
                                 </div>
                               </div>
-                              <div className="info">
-                                <span className="change down text-danger">
-                                  <em className="icon ni ni-arrow-long-down"></em>
-                                  2.34%
-                                </span>
-                                <span> vs. last week</span>
-                              </div>
+                              <DefaultRevenueChart />
                             </div>
                           </div>
                         </div>
@@ -153,28 +161,35 @@ export default function Home() {
                       <div className="card">
                         <div className="nk-ecwg nk-ecwg6">
                           <div className="card-inner">
-                            <div className="card-title-group">
-                              <div className="card-title">
-                                <h6 className="title">Today's Customer</h6>
-                              </div>
-                            </div>
-                            <div className="data">
-                              <div className="data-group">
-                                <div className="amount">$20,847</div>
-                                <div className="nk-ecwg6-ck">
-                                  <canvas
+                            <div
+                              style={{ display: "flex", alignItems: "center" }}
+                            >
+                              <div>
+                                <div className="card-title-group">
+                                  <div className="card-title">
+                                    <h6 className="title">Today's Customer</h6>
+                                  </div>
+                                </div>
+                                <div className="data">
+                                  <div className="data-group">
+                                    <div className="amount">$20,847</div>
+                                    <div className="nk-ecwg6-ck">
+                                      {/* <canvas
                                     className="ecommerce-line-chart-s3"
                                     id="labIncome"
-                                  ></canvas>
+                                  ></canvas> */}
+                                    </div>
+                                  </div>
+                                  <div className="info">
+                                    <span className="change up text-danger">
+                                      <em className="icon ni ni-arrow-long-up"></em>
+                                      4.63%
+                                    </span>
+                                    <span> vs. last week</span>
+                                  </div>
                                 </div>
                               </div>
-                              <div className="info">
-                                <span className="change up text-danger">
-                                  <em className="icon ni ni-arrow-long-up"></em>
-                                  4.63%
-                                </span>
-                                <span> vs. last week</span>
-                              </div>
+                              <DefaultCustomerChart />
                             </div>
                           </div>
                         </div>
@@ -184,28 +199,35 @@ export default function Home() {
                       <div className="card">
                         <div className="nk-ecwg nk-ecwg6">
                           <div className="card-inner">
-                            <div className="card-title-group">
-                              <div className="card-title">
-                                <h6 className="title">Today's Expense</h6>
-                              </div>
-                            </div>
-                            <div className="data">
-                              <div className="data-group">
-                                <div className="amount">$23,485</div>
-                                <div className="nk-ecwg6-ck">
-                                  <canvas
+                            <div
+                              style={{ display: "flex", alignItems: "center" }}
+                            >
+                              <div>
+                                <div className="card-title-group">
+                                  <div className="card-title">
+                                    <h6 className="title">Today's Expense</h6>
+                                  </div>
+                                </div>
+                                <div className="data">
+                                  <div className="data-group">
+                                    <div className="amount">$23,485</div>
+                                    <div className="nk-ecwg6-ck">
+                                      {/* <canvas
                                     className="ecommerce-line-chart-s3"
                                     id="todayExpense"
-                                  ></canvas>
+                                  ></canvas> */}
+                                    </div>
+                                  </div>
+                                  <div className="info">
+                                    <span className="change up text-primary">
+                                      <em className="icon ni ni-arrow-long-down"></em>
+                                      1.34%
+                                    </span>
+                                    <span> vs. last week</span>
+                                  </div>
                                 </div>
                               </div>
-                              <div className="info">
-                                <span className="change up text-primary">
-                                  <em className="icon ni ni-arrow-long-down"></em>
-                                  1.34%
-                                </span>
-                                <span> vs. last week</span>
-                              </div>
+                              <DefaultVisitorChart />
                             </div>
                           </div>
                         </div>
