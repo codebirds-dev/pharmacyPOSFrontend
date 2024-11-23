@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const SidebarRight = () => {
@@ -286,15 +287,12 @@ const SidebarRight = () => {
                 </a>
               </li>
               <li className="nk-menu-item">
-                <a
-                  href="html/pharmacy/general-settings.html"
-                  className="nk-menu-link"
-                >
+                <Link href="general-settings" className="nk-menu-link">
                   <span className="nk-menu-icon">
                     <em className="icon ni ni-setting-fill"></em>
                   </span>
                   <span className="nk-menu-text">Setting</span>
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

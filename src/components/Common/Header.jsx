@@ -21,7 +21,7 @@ const Header = () => {
               <a href="html/index.html" className="logo-link">
                 <img
                   className="logo-light logo-img"
-                  src="./images/logo.png"
+                  src="/assets/images/logo.png"
                   srcSet="./images/logo2x.png 2x"
                   alt="logo"
                 />
