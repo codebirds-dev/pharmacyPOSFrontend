@@ -22,6 +22,7 @@ const Index = () => {
   const dispatch = useDispatch();
   const [api, contextHolder] = notification.useNotification();
   const auth = useSelector((state) => state.auth);
+  // const user = useSelector((state)=> state.user);
   const router = useRouter();
   const [form] = Form.useForm();
   const [isLoading, setIsLoading] = useState(false);
@@ -29,10 +30,10 @@ const Index = () => {
   const [dateOfBirth, setDateOfBirth] = useState(null);
 
   useEffect(() => {
-    if (user) {
+    if (auth?.user) {
       router.push("/dashboard");
     }
-  }, [user]);
+  }, [auth?.user]);
 
   const onFinish = async (values) => {
     let payload = {
